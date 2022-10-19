@@ -10,7 +10,6 @@ export const Container = styled.div`
  min-width: 260px;
  min-height: 30px;
  padding: 0;
-
 `
 export const Input = styled.input`
  font-family: 'Open Sans';
@@ -20,6 +19,7 @@ export const Input = styled.input`
  padding: 0;
  height: 30px;
  outline: none;
+ background-color: #fff;
 `
 export const SearchButton = styled.button`
  background-color: #000;

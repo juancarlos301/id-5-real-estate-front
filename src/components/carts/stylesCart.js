@@ -2,18 +2,16 @@ import styled from 'styled-components'
 import {  BiRuler as ruler} from "react-icons/bi";
 
 export const Container = styled.div`
- max-width: 220px;
- width: 220px;
- min-height: 240px;
+ max-width: ${props=>props.visible ? '220' : '100%'};;
  display: flex;
  justify-content: center;
  flex-wrap: wrap;
+ margin: ${props=>props.visible ? '0 15px 0 0' : '0'};;
 `
-
 export const Img = styled.img`
- width: 220px;
- height: 140px;
+ width: ${props=>props.visible ? '220px' : '100%'};
  margin-bottom: 15px;
+ border-radius: 6px;
 `
 
 export const ContainerData = styled.div`
@@ -21,7 +19,7 @@ export const ContainerData = styled.div`
  display: flex;
  justify-content: center;
  flex-wrap: wrap;
- padding: 0 8px;
+ padding: ${props=>props.visible ? '0 8px' : '0'};
 `
 export const ContainerOne = styled.div`
  width: 100%;
@@ -38,13 +36,21 @@ export const AlertZona = styled.div`
  display: flex;
  justify-content: center;
  border-radius: 20px;
- border: 2px solid rgba(0, 0, 0, 0.80);
+ border: 1px solid rgba(0, 0, 0, 0.70);
  font-family: 'Open Sans';
  font-style: normal;
  font-weight: 400;
  font-size: 7px;
  line-height: 10px;
  color: rgba(0, 0, 0, 0.60);
+ margin: 0;
+`
+export const Contact = styled.p`
+ grid-column-start: 2;
+ width: 60px;
+ font-size: 7px;
+ line-height: 10px;
+ color: rgba(0, 0, 0, 0.70);
  margin: 0;
 `
 
@@ -58,22 +64,21 @@ export const Text1 = styled.p`
  color: #000;
 `
 export const ContainerTwo = styled.div`
- display: flex;
+ width: 100%;
+ display:${props=>props.visible ? "flex": "none"};
  justify-content: flex-start;
  flex-direction: ${props=>props.row ? "row": "column"};
  align-items: flex-start;
- width: 100%;
  margin: ${props=>props.row ? "7px 0": "0"};
  
 `
 export const Text2 = styled.span`
- color: ${props=> props.disabledColor ? 'rgba(0, 0, 0, 0.5)' : '#000'};
+ color: ${props=> props.disabledColor ? '#000' : 'rgba(0, 0, 0, 0.5)' };
  font-family: 'Open Sans';
  font-style: normal;
  font-weight: 600;
- font-size: 9px;
+ font-size: ${props=>props.Size || '9px'};
  line-height: 12px;
- text-align: center;
 `
 
 export const DimensionsText = styled.span`

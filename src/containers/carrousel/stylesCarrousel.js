@@ -8,10 +8,17 @@ export const Container = styled.ul`
  overflow-x: scroll;
  padding: 0;
  list-style: none;
- &-webkit-scrollbar{
-   height: 8px;
+ @media (min-width: 1000px) {
+   &::-webkit-scrollbar{
+     height: 10px;
+    }
+  &::-webkit-scrollbar-track {
+      background-color: black; 
+  
   }
-&-webkit-scrollbar-track {
-    background-color: rgba(40, 40, 53, 0.452); 
-}
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(168, 152, 152);
+    border-radius: 20px;   
+  }
+ }
 `

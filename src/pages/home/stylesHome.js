@@ -24,7 +24,15 @@ color: #000;
 margin-left: ${props=> props.alingLeft ? '10px': '0'};
 margin-bottom:10px ;
 `
-export const ContainerFavs = styled.div`
+export const Containerfeatured = styled.div`
  width: 100%;
  overflow: hidden;
+ margin-bottom: 200px;
+`
+export const ContainerListOfSearch = styled.div`
+ width: 100%;
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+ gap: 30px 10px;
+ margin:0 10px;
 `
