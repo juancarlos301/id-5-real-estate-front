@@ -32,7 +32,6 @@ export const Home = () => {
         const value = e.target.value.toUpperCase()
         setValueInput({...valueInput, [name]: value})
     }
-    console.log(valueInput)
     return (
         <Container>
             <Navbar setSearched={setSearched} setValueInput={setValueInput} valueInput={valueInput}/>
@@ -92,9 +91,11 @@ export const Home = () => {
                                       validate="decimal"
                                       />
                     </ContainerFilters>
+                    {estates.length > 0 && (
                     <Title alingLeft marginTop>
-                        {estates.length} Departamentos en alquiler en {estates[0].country.split(",", 1)}
+                        {estates?.length} Departamentos en alquiler en {estates[0]?.country.split(",", 1)}
                      </Title>
+                    )}
                     <ContainerListOfEstate>
                         {estates.length > 0 ? (estates.map((element, index)=>(
                                 <Cart key={index}
