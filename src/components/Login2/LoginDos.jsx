@@ -67,7 +67,6 @@ export function LoginDos() {
         <br />O ingresa con una red social
       </Paragraph>
       <Button><FaFacebook/> Ingresar con Facebook</Button>
-      
       <Button><FaGoogle/> Ingresar con Google</Button>
       <Button><FaTwitter/> Ingresar con Twitter</Button>
     </MainContainer>
