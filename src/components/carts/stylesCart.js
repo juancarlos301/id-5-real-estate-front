@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import {  BiRuler as ruler} from "react-icons/bi";
 
 export const Container = styled.div`
- max-width: ${props=>props.visible ? '220' : '100%'};;
+ max-width: ${props=>props.visible ? '220' : '100%'};
  display: flex;
  justify-content: center;
  flex-wrap: wrap;
- margin: ${props=>props.visible ? '0 15px 0 0' : '0'};;
+ margin: ${props=>props.visible ? '0 15px 0 0' : '0'};
 `
 export const Img = styled.img`
  width: ${props=>props.visible ? '220px' : '100%'};

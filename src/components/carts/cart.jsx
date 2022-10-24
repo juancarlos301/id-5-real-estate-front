@@ -4,7 +4,7 @@ import { Container, Img, ContainerData, ContainerOne,
 
 import { BiBarChartAlt2, BiBed} from "react-icons/bi";
 import { BsDoorOpen } from "react-icons/bs";
-export const Cart = ({img, price, time, address, country, featured}) => {
+export const Cart = ({img, price, time, address, country, featured, baths}) => {
     return (
         <Container visible={featured}>
             <Img src={img} alt=""visible={featured}/>
@@ -34,7 +34,7 @@ export const Cart = ({img, price, time, address, country, featured}) => {
                         <BiBarChartAlt2 fill="rgba(0, 0, 0, 0.5)"/> <DimensionsText>100 m2.</DimensionsText>
                     </DimensionsContainer>
                     <DimensionsContainer>
-                        <Ruler /> <DimensionsText>500 m2.</DimensionsText>
+                        <Ruler /> <DimensionsText>{baths} baños.</DimensionsText>
                     </DimensionsContainer>
                     <DimensionsContainer>
                         <BsDoorOpen fill="rgba(0, 0, 0, 0.5)"/> <DimensionsText>10 amb.</DimensionsText>
