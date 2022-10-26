@@ -4,8 +4,10 @@ import { Searcher } from "../../components/searcher/searcher"
 import { Carrousel } from "../../containers/carrousel/carrousel"
 import { Cart } from "../../components/carts/cart"
 import { Select} from "../../components/select/select"
+import { ShoppingGuide } from "../../containers/shoppingGuide/shoppingGuide"
+import { Footer } from "../../containers/footer/footer"
 //css
-import { Container, ContainerSearcher, Title, Containerfeatured,
+import { Container, Title, Containerfeatured,
          ContainerListOfEstate, ContainerSearched, ContainerButtons,
          ContainerButton, TextButton, Iconfilter, IconMap,
          ContainerFilters } from "./stylesHome"
@@ -35,11 +37,11 @@ export const Home = () => {
     return (
         <Container>
             <Navbar setSearched={setSearched} setValueInput={setValueInput} valueInput={valueInput}/>
-            <ContainerSearcher>
+            <ContainerSearched>
                 <Title aling={'center'}>Encuentra el hogar de tus sueños</Title>
                 <Searcher handleSearch={handleSearch} setEstates={setEstates}
                             estates={data} valueInput={valueInput} setSearched={setSearched}/>
-            </ContainerSearcher>
+            </ContainerSearched>
             {!searched ? (
                 <Containerfeatured>
                     <Title alingLeft>Inmuebles destacados</Title>
@@ -111,7 +113,8 @@ export const Home = () => {
                     </ContainerListOfEstate>
             </ContainerSearched>
             )}
-            
+            <ShoppingGuide/>
+            <Footer/>
         </Container>
     )
 } 

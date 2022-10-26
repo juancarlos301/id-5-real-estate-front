@@ -31,13 +31,13 @@ margin-top: ${props=> props.marginTop ? '20px': '0'};
 export const Containerfeatured = styled.div`
  width: 100%;
  overflow: hidden;
- margin-bottom: 200px;
 `
 export const ContainerSearched = styled.div`
  width: 100%;
  display: flex;
  justify-content: center;
  flex-wrap: wrap;
+ margin-bottom: 60px;
 `
 export const ContainerButtons = styled.div`
  width: 100%;

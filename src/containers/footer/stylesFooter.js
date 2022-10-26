@@ -5,10 +5,14 @@ export const Container = styled.footer`
  display: flex;
  justify-content: center;
  align-items: center;
+ flex-wrap: wrap;
 `
-export const Title = styled.h2`
- font-family: 'Open Sans';
- color: #000;
- font-weight: 700;
- font-size: 20px;
-`
+export const Title = styled.p`
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #ebeaea;
+  padding-bottom: 1rem;
+  margin: 0;
+  padding: 40px 0;
+`;

@@ -42,6 +42,7 @@ export const ContainerBars = styled.div`
 export const Logo = styled.img`
  width: 60px;
  height: 40px;
+ cursor: pointer;
 `
 
 export const Bar1y2 = styled.div`
