@@ -1,61 +1,56 @@
 import { TfiRulerAlt2, TfiRuler } from "react-icons/tfi";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { BsDoorOpen } from "react-icons/bs";
-import { RiFontSize2, RiWhatsappFill } from "react-icons/ri";
-import img1 from "../../img/foto17.jpg";
+import { RiWhatsappFill } from "react-icons/ri";
 import {
-  MainContainer,
+  Container,
   Img,
-  ButtonZone,
   ContainerRow,
   BoldPrice,
   ContactText,
   OfferPrice,
-  AdressTitle,
   Adress,
   Description,
   DescriptionContainer,
   IconsTextContainer,
   IconsText,
   ButtonBuy,
-} from "./StylesDetails";
+} from "./StylesDetailCard";
 
-export function Details({
-  img,
-  price,
-  time,
-  adress,
-  country,
-  featured,
-  baths,
-}) {
-  const style = { fontSize: "16px" };
+export const DetailCard = ({card}) =>{
+  const {
+    logo,
+    price,
+    meters,
+    address,
+    country,
+    rooms,
+    baths,
+  } = card
+
   return (
-    <MainContainer>
-      <ButtonZone>Zona destacada</ButtonZone>
-      <div>
-        <Img src={img1} alt="inmobiliaria" />
+      <Container>
+        <Img src={logo} alt="inmobiliaria" />
         <ContainerRow>
-          <BoldPrice>{`USD $${892939}`} </BoldPrice>
+          <BoldPrice>{`USD ${price}`} </BoldPrice>
           <ContactText>
-            Enviar mensaje
-            <RiWhatsappFill style={style} />
+              Enviar mensaje
+              <RiWhatsappFill style={{fontSize: "16px"}} />
           </ContactText>
         </ContainerRow>
-        <OfferPrice>{price} $9239.45 | Oferta</OfferPrice>
-        <AdressTitle>{adress}Avenida oscar R Benavides</AdressTitle>
+        <OfferPrice>Casa | Alquilado</OfferPrice>
+        <Adress title="true">{address}</Adress>
         <Adress>
-          {adress}
-          {country} 293 Esthimer rd. Avn luicia. Illinois 84548
+          {country}
         </Adress>
         <DescriptionContainer>
           <IconsTextContainer>
             <TfiRulerAlt2 />
-            <IconsText>123m2</IconsText>
+            <IconsText>{meters}m2</IconsText>
           </IconsTextContainer>
           <IconsTextContainer>
             <TfiRuler />
-            <IconsText>12m2</IconsText>
+            <IconsText>{meters/2}m2</IconsText>
           </IconsTextContainer>
           <IconsTextContainer>
             <BsDoorOpen />
@@ -63,7 +58,11 @@ export function Details({
           </IconsTextContainer>
           <IconsTextContainer>
             <MdOutlineSpaceDashboard />
-            <IconsText>2 dorm.</IconsText>
+            <IconsText>{rooms} dorm.</IconsText>
+          </IconsTextContainer>
+          <IconsTextContainer>
+            <MdOutlineSpaceDashboard />
+            <IconsText>{baths} baños.</IconsText>
           </IconsTextContainer>
         </DescriptionContainer>
         <Description>
@@ -72,7 +71,6 @@ export function Details({
           Rerum, quis. Eos vel illo aut. Blanditiis, a!
         </Description>
         <ButtonBuy>Adquirir inmueble</ButtonBuy>
-      </div>
-    </MainContainer>
+      </Container>
   );
 }

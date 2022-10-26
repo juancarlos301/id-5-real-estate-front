@@ -3,28 +3,31 @@ import { Navbar } from "../../components/navbar/navbar"
 import { Searcher } from "../../components/searcher/searcher"
 import { Carrousel } from "../../containers/carrousel/carrousel"
 import { Cart } from "../../components/carts/cart"
-import { Select} from "../../components/select/select"
+import { InputComponent} from "../../components/select/inputComponent"
+import { SelectComponent} from "../../components/select/selectComponent"
 import { ShoppingGuide } from "../../containers/shoppingGuide/shoppingGuide"
 import { Footer } from "../../containers/footer/footer"
 //css
 import { Container, Title, Containerfeatured,
          ContainerListOfEstate, ContainerSearched, ContainerButtons,
          ContainerButton, TextButton, Iconfilter, IconMap,
-         ContainerFilters } from "./stylesHome"
+         ContainerFilters, ContainerSearcher } from "./stylesHome"
 import logo from '../../assets/foto2.jpeg'
+import logo2 from '../../assets/foto17.jpg'
+import logo3 from '../../assets/foto19.jpg'
 const array = [
-    {price: 480000, time: '09 de septiembre 2022', address: 'CALLE OREJUELAS - N° 270', country: 'Miraflores, Medellin, colombia',logo: logo, baths: 2, rooms: 4, meters: 1000},
-    {price: 580000, time: '07 de septiembre 2022', address: 'CALLE FANTASIA - N° 270',country: 'Miraflores, Lima, Bolivar', logo: logo, baths: 1, rooms: 4, meters: 1000},
-    {price: 680000, time: '01 de septiembre 2022', address: 'CALLE CRUZ - N° 270',country: 'Altamira, Lima, Argentina',logo: logo, baths: 1, rooms: 5, meters: 2000},
-    {price: 780000, time: '10 de septiembre 2022', address: 'CALLE ESTACIONARIA - N° 270',country: 'Miraflores, Lima, Perú', logo: logo, baths: 2, rooms: 3, meters: 3000},
-    {price: 880000, time: '20 de septiembre 2022', address: 'CALLE ORIENTAL - N° 270',country: 'valle, Lima, Perú', logo: logo, baths: 2, rooms: 2, meters: 4000},
+    {id: 1,price: 480000, time: '09 de septiembre 2022', address: 'CALLE OREJUELAS - N° 270', country: 'Colombia, Medellin,Miraflores',logo: logo, environments: 2, baths: 2, rooms: 4, meters: 1000},
+    {id: 2,price: 580000, time: '07 de septiembre 2022', address: 'CALLE FANTASIA - N° 270',country: 'Bolivar, Cundinamarca,Miraflores', logo: logo2, environments: 2, baths: 1, rooms: 4, meters: 1000},
+    {id: 3,price: 680000, time: '01 de septiembre 2022', address: 'CALLE CRUZ - N° 270',country: 'Argentina, Soopetran,Miraflores',logo: logo3, environments: 2, baths: 1, rooms: 5, meters: 2000},
+    {id: 4,price: 780000, time: '10 de septiembre 2022', address: 'CALLE ESTACIONARIA - N° 270',country: 'Lima, Lima,Miraflores', logo: logo, environments: 2, baths: 2, rooms: 3, meters: 3000},
+    {id: 5,price: 880000, time: '20 de septiembre 2022', address: 'CALLE ORIENTAL - N° 270',country: 'Perú, Belén,valle', logo: logo2, environments: 2, baths: 2, rooms: 2, meters: 4000},
 ]
 
 export const Home = () => {
 
     const [data, setData] = useState([...array])
     const [estates, setEstates] = useState([])
-    const [valueInput, setValueInput] = useState({})
+    const [valueInput, setValueInput] = useState({pais: ''})
     const [searched, setSearched] = useState(false)
     const [errorInput, setErrorIput] = useState({})
     const [visibleFilters, setVisibleFilters] = useState(false)
@@ -34,26 +37,36 @@ export const Home = () => {
         const value = e.target.value.toUpperCase()
         setValueInput({...valueInput, [name]: value})
     }
+
+    const countries = array.map((item) => {
+        const separateCountry = item.country.split(",", 1)
+        return {country: separateCountry[0].toUpperCase()}
+    })
+
     return (
         <Container>
             <Navbar setSearched={setSearched} setValueInput={setValueInput} valueInput={valueInput}/>
-            <ContainerSearched>
+            <ContainerSearcher marginBot={searched}>
                 <Title aling={'center'}>Encuentra el hogar de tus sueños</Title>
                 <Searcher handleSearch={handleSearch} setEstates={setEstates}
                             estates={data} valueInput={valueInput} setSearched={setSearched}/>
-            </ContainerSearched>
+            </ContainerSearcher>
             {!searched ? (
                 <Containerfeatured>
                     <Title alingLeft>Inmuebles destacados</Title>
                     <Carrousel>
                         {data.map((element, index)=>(
                         <Cart key={index}
+                                id={element.id}
                                 img={element.logo}
                                 price={element.price}
                                 time={element.time}
                                 address={element.address}
-                                SelectMinMax country={element.country}
+                                country={element.country}
                                 baths={element.baths}
+                                environments={element.environments}
+                                rooms={element.rooms}
+                                meters={element.meters}
                                 featured={true}/>
                         ))
                         }
@@ -70,22 +83,32 @@ export const Home = () => {
                         </ContainerButton>
                     </ContainerButtons>
                     <ContainerFilters visible={visibleFilters}>
-                        <Select placeholder="Cantidad de baños" nameInput={"baños"}
+                        <SelectComponent placeholder="Ciudad" nameInput={"pais"}
+                                handleSearch={handleSearch}
+                                countries={countries}
+                                defaultValue={valueInput.pais}
+                                />
+                        <InputComponent placeholder="Cantidad de ambientes" nameInput={"ambientes"}
                                 handleSearch={handleSearch}
                                 errorInput={errorInput}
                                 setErrorIput={setErrorIput}
                                 />
-                        <Select placeholder="Cantidad de habitaciones" nameInput={"habitaciones"}
+                        <InputComponent placeholder="Cantidad de baños" nameInput={"baños"}
                                 handleSearch={handleSearch}
                                 errorInput={errorInput}
                                 setErrorIput={setErrorIput}
                                 />
-                        <Select placeholder="Precio" nameInput={"precio"}
+                        <InputComponent placeholder="Cantidad de habitaciones" nameInput={"habitaciones"}
+                                handleSearch={handleSearch}
+                                errorInput={errorInput}
+                                setErrorIput={setErrorIput}
+                                />
+                        <InputComponent placeholder="Precio" nameInput={"precio"}
                                 handleSearch={handleSearch} 
                                 errorInput={errorInput}
                                 setErrorIput={setErrorIput}
                             />
-                        <Select placeholder="metros" 
+                        <InputComponent placeholder="metros" 
                                       handleSearch={handleSearch} 
                                       errorInput={errorInput}
                                       setErrorIput={setErrorIput}
@@ -113,7 +136,7 @@ export const Home = () => {
                     </ContainerListOfEstate>
             </ContainerSearched>
             )}
-            <ShoppingGuide/>
+            {!searched && <ShoppingGuide/>}
             <Footer/>
         </Container>
     )

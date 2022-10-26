@@ -16,7 +16,7 @@ export const ItemFooter =({ name }) => {
       <DropDown>
         <DropButton onClick={(e) => setIsActive(!isActive)}>
           {name}
-          <Icon active={isActive}/>
+          <Icon open={isActive}/>
         </DropButton>
         {isActive && (
           <DropContent>

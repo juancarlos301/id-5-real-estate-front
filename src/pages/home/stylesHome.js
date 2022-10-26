@@ -9,11 +9,11 @@ export const Container = styled.div`
 `
 export const ContainerSearcher = styled.div`
  width: 100%;
- min-height: 130px;
  display: flex;
  justify-content: center;
  align-items: center;
- margin: 30px 0 0 ;
+ margin-top: 30px;
+ margin-bottom: ${props=> props.marginBot ? "20px" : '0'};
  flex-wrap: wrap;
 `
 export const Title = styled.h2`
@@ -27,10 +27,14 @@ color: #000;
 margin-left: ${props=> props.alingLeft ? '10px': '0'};
 margin-bottom:10px ;
 margin-top: ${props=> props.marginTop ? '20px': '0'};
+@media (min-width: 1000px) {
+    text-align: center;
+}
 `
 export const Containerfeatured = styled.div`
  width: 100%;
  overflow: hidden;
+ margin-top: 60px;
 `
 export const ContainerSearched = styled.div`
  width: 100%;
@@ -52,8 +56,9 @@ export const ContainerButton = styled.div`
  display: flex;
  justify-content: center;
  align-items: center;
- padding: 4px 0;
+ padding: 8px 0;
  background-color: #d7d7d7d1;
+ border-radius: 6px;
  cursor: pointer;
 `
 export const TextButton = styled.p`

@@ -20,8 +20,15 @@ export const ContainerMinMax = styled.div`
  width: 100%;
  display: flex;
  justify-content: center;
+ gap: 0 5px;
 `
 export const ErrorSpan = styled.span`
  font-size: 12px;
  color: red;
+`
+export const Select = styled.select`
+ font-family: 'Open Sans';
+ font-size: 16px;
+ width: 100%;
+ border-radius: 5px;
 `

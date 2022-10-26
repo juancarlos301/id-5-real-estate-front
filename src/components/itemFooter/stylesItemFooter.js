@@ -12,7 +12,7 @@ export const DropDown = styled.div`
   background: #ebeaea;
 `;
 export const DropButton = styled.div`
-  padding: 15px 20px;
+  padding: 15px 10px;
   background: #ebeaea;
   box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.02);
   font-weight: bold;
@@ -23,7 +23,6 @@ export const DropButton = styled.div`
   cursor: pointer;
   justify-content: space-between;
   font-size: 13px;
-  padding: 24px 20px;
 `;
 export const DropContent = styled.div`
   position: relative;
@@ -42,6 +41,6 @@ export const TextContent = styled.p`
   font-size: 12px;
 `;
 export const Icon = styled(FiChevronRight)`
-  background: "#EBEAEA";
-  transform: ${props=> props.active ? "rotate(90deg)" : "none"};
+  background-color: #ebeaea;
+  transform: ${props=> props.open ? "rotate(90deg)" : "none"};
 `;

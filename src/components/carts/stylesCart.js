@@ -10,6 +10,7 @@ export const Container = styled.div`
 `
 export const Img = styled.img`
  width: ${props=>props.visible ? '220px' : '100%'};
+ height: 150px;
  margin-bottom: 15px;
  border-radius: 6px;
 `
@@ -89,7 +90,7 @@ export const DimensionsText = styled.span`
  font-size: 8px;
  line-height: 8px;
  text-align: center;
- margin: 0 4px 0 0;
+ margin: 0;
 `
 export const DimensionsContainer = styled.div`
  display: flex;

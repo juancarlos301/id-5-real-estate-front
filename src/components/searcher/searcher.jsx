@@ -35,9 +35,9 @@ export const Searcher = ({handleSearch, setEstates, estates, valueInput, setSear
     }
     return (
         <Container>
-            <BsSearch size={'15px'} style={{ margin: '0 12px'}}/>
+            <BsSearch size={'15px'} style={{ margin: '0 12px', backgroundColor: '#fff'}}/>
             <Input type="text" placeholder="En que ciudad deseas vivir"
-             name="pais" onChange={(e)=>handleSearch(e)}/>
+             name="pais" value={valueInput.pais} onChange={(e)=>handleSearch(e)}/>
             <SearchButton onClick={()=>searchData()}>Buscar</SearchButton>
         </Container>
     )

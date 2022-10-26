@@ -2,12 +2,17 @@ import { Container, Img, ContainerData, ContainerOne,
         AlertZona, Text1,Text2, ContainerTwo, DimensionsText,
         DimensionsContainer, Ruler, Contact} from "./stylesCart"
 
-import { BiBarChartAlt2, BiBed} from "react-icons/bi";
 import { BsDoorOpen } from "react-icons/bs";
-export const Cart = ({img, price, time, address, country, featured, baths}) => {
+import { TfiRulerAlt2 } from "react-icons/tfi";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+
+import { Link } from "react-router-dom";
+export const Cart = ({id,img, price, time, address, country, featured, baths, environments, rooms, meters}) => {
     return (
         <Container visible={featured}>
+            <Link to={`detail/${id}`}>
             <Img src={img} alt=""visible={featured}/>
+            </Link>
             <ContainerData visible={featured}>
                 <ContainerOne>
                     <ContainerTwo visible={true}>
@@ -31,16 +36,19 @@ export const Cart = ({img, price, time, address, country, featured, baths}) => {
                     )}
                 <ContainerTwo row visible={featured}>
                     <DimensionsContainer>
-                        <BiBarChartAlt2 fill="rgba(0, 0, 0, 0.5)"/> <DimensionsText>100 m2.</DimensionsText>
+                        <TfiRulerAlt2 fill="rgba(0, 0, 0, 0.5)"/> <DimensionsText>{meters} m2.</DimensionsText>
                     </DimensionsContainer>
                     <DimensionsContainer>
-                        <Ruler /> <DimensionsText>{baths} baños.</DimensionsText>
+                        <Ruler /> <DimensionsText>{meters / 2} m2.</DimensionsText>
                     </DimensionsContainer>
                     <DimensionsContainer>
-                        <BsDoorOpen fill="rgba(0, 0, 0, 0.5)"/> <DimensionsText>10 amb.</DimensionsText>
+                        <BsDoorOpen fill="rgba(0, 0, 0, 0.5)"/> <DimensionsText>{environments} amb.</DimensionsText>
                     </DimensionsContainer>
                     <DimensionsContainer>
-                        <BiBed fill="rgba(0, 0, 0, 0.5)"/> <DimensionsText>8 dorm.</DimensionsText>
+                        <MdOutlineSpaceDashboard fill="rgba(0, 0, 0, 0.5)"/> <DimensionsText>{rooms} dorm.</DimensionsText>
+                    </DimensionsContainer>
+                    <DimensionsContainer>
+                        <MdOutlineSpaceDashboard fill="rgba(0, 0, 0, 0.5)"/> <DimensionsText>{baths} baños.</DimensionsText>
                     </DimensionsContainer>
                 </ContainerTwo>
             </ContainerData>

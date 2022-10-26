@@ -4,7 +4,7 @@ export const Container = styled.div`
   margin: 0 auto;
   width: 90%;
   margin-bottom: 3rem;
-  margin-top: 10rem;
+  margin-top: 30px;
 `;
 export const Section = styled.div`
   display: flex;

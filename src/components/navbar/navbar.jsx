@@ -3,6 +3,7 @@ import { Container, Logo, Bar1y2, Bar3, ContainerBars, Linke, ButtonDrop, Ul, Li
 import logo from '../../assets/bonpland.jpg'
 import { useState } from "react"
 import { BsArrowDownShort } from "react-icons/bs";
+
 export const Navbar = ({setSearched, setValueInput, valueInput}) => {
     const [dropDown, setDropDown] = useState(false)
     const [click, setClick] = useState(false)

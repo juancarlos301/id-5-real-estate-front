@@ -1,6 +1,6 @@
 import { Input, Container, Title, ContainerMinMax, ErrorSpan} from "./stylesSelect.js"
 
-export const Select = ({handleSearch, placeholder,
+export const InputComponent = ({handleSearch, placeholder,
                         nameInput, errorInput, setErrorIput,
                         validate = "integer", minmax}) =>{
 

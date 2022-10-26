@@ -1,4 +1,6 @@
-import Image1 from "../../assets/foto2.jpeg";
+import Image1 from "../../assets/foto17.jpg";
+import Image2 from "../../assets/foto19.jpg";
+
 import {
   Container,
   Section,
@@ -24,7 +26,7 @@ export const ShoppingGuide = () => {
           <Paragraph>¿Que necesito para comprar?</Paragraph>
           <Button>Guia de compra</Button>
         </InfoContainer>
-        <Image src={Image1} alt="" />
+        <Image src={Image2} alt="" />
       </Section>
     </Container>
   );
