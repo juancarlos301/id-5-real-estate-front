@@ -10,7 +10,7 @@ import {
   ErrorStyle,
 } from "./StylesLoginDos";
 import { useForm } from "react-hook-form";
-import { FaFacebook, FaGoogle, FaTwitter } from 'react-icons/fa';
+import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 
 export function LoginDos() {
   const {
@@ -66,6 +66,7 @@ export function LoginDos() {
         <Register href="">¿No tienes cuenta? Registrate</Register>
         <br />O ingresa con una red social
       </Paragraph>
+      
       <Button><FaFacebook/> Ingresar con Facebook</Button>
       <Button><FaGoogle/> Ingresar con Google</Button>
       <Button><FaTwitter/> Ingresar con Twitter</Button>
