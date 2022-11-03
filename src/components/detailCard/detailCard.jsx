@@ -2,9 +2,12 @@ import { TfiRulerAlt2, TfiRuler } from "react-icons/tfi";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { BsDoorOpen } from "react-icons/bs";
 import { RiWhatsappFill } from "react-icons/ri";
+import { Carrousel } from "../../containers/carrousel/carrousel";
+import image2 from '../../assets/foto17.jpg'
+import image3 from '../../assets/foto19.jpg'
+
 import {
   Container,
-  Img,
   ContainerRow,
   BoldPrice,
   ContactText,
@@ -28,9 +31,10 @@ export const DetailCard = ({card}) =>{
     baths,
   } = card
 
+  const data = [logo,image2,image3]
   return (
       <Container>
-        <Img src={logo} alt="inmobiliaria" />
+        <Carrousel detail="true" data={data}/>
         <ContainerRow>
           <BoldPrice>{`USD ${price}`} </BoldPrice>
           <ContactText>

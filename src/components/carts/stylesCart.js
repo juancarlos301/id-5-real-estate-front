@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import {  BiRuler as ruler} from "react-icons/bi";
 
 export const Container = styled.div`
- max-width: ${props=>props.visible ? '220' : '100%'};
+ max-width: ${props=>props.visible ? '220' : '340px'};
  display: flex;
  justify-content: center;
  flex-wrap: wrap;

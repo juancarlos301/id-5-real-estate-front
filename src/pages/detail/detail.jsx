@@ -32,11 +32,11 @@ export const Detail = () => {
 return (
     <>
         <Navbar/>
-    <MainContainer>
-        <ButtonZone>Zona destacada</ButtonZone>
-        <DetailCard card={card}/>
-    </MainContainer>
-    <Footer/>
+        <MainContainer>
+            <ButtonZone>Zona destacada</ButtonZone>
+            <DetailCard card={card}/>
+        </MainContainer>
+        <Footer/>
     </>
 )
 }

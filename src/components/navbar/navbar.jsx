@@ -1,4 +1,3 @@
-
 import { Container, Logo, Bar1y2, Bar3, ContainerBars, Linke, ButtonDrop, Ul, Li, DivDropDown, ContainerRutes} from "./stylesNavbar"
 import logo from '../../assets/bonpland.jpg'
 import { useState } from "react"
@@ -17,10 +16,12 @@ export const Navbar = ({setSearched, setValueInput, valueInput}) => {
     }
     return (
         <Container >
+            <Linke to="/">
             <Logo src={logo} alt="" onClick={()=>{
-                setSearched(false)
-                setValueInput({pais: valueInput.pais})
+                setSearched && setSearched(false)
+                setValueInput && setValueInput({pais: valueInput.pais})
                 }}/>
+            </Linke>
                 <ContainerRutes open={click}>
                     <Linke to="/">Home</Linke>
                     <DivDropDown>

@@ -4,11 +4,6 @@ export const Container = styled.div`
     padding: 0 10px;
     width: 100%;
 `
-export const Img = styled.img`
-    width: 100%;
-    height: 200px;
-    border-radius: 10px;
-`
 export const ContainerRow = styled.div`
     display: flex;
     flex-direction: row;
@@ -41,7 +36,6 @@ export const Adress = styled.p`
     opacity: ${props=> props.title ? '100%' : '50%'};
     font-weight: ${props=> props.title && '600'};
     margin-bottom:  ${props=> props.title ? '0%' : '10px'};
-
 `
 export const DescriptionContainer = styled.div`
     opacity: 50%;

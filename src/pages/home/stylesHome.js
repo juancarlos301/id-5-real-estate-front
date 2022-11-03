@@ -80,7 +80,8 @@ export const ContainerFilters = styled.div`
 `
 export const ContainerListOfEstate = styled.div`
  width: 100%;
- display: grid;
+ display: ${props => props.changeDisplay > 1? "grid" : "flex"};
+ justify-content: center;
  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
  gap: 30px 10px;
  margin:0 10px;
