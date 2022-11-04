@@ -4,9 +4,11 @@ import { LoginDos } from './components/Login2/LoginDos';
 import { Detail } from './pages/detail/detail';
 import {GlobalStyle} from './stylesGlobal'
 import { Promotion } from './components/promotion/Promotion';
+
+
+
 function App() {
   return (
-    
     <BrowserRouter>
     <GlobalStyle/>
     <Routes>
@@ -15,6 +17,9 @@ function App() {
       <Route path={"/detail/:id"} element={<Detail/>}/>
     </Routes>
     < Promotion/>
+    <div className="App">
+
+    </div>
     </BrowserRouter>
 
   );

@@ -1,6 +1,6 @@
 
 import { Container, Logo, Bar1y2, Bar3, ContainerBars, Linke, ButtonDrop, Ul, Li, DivDropDown, ContainerRutes} from "./stylesNavbar"
-import logo from '../../assets/bonpland.jpg'
+import logo from '../../assets/logo-bg.png'
 import { useState } from "react"
 import { BsArrowDownShort } from "react-icons/bs";
 

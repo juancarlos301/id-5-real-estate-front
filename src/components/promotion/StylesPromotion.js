@@ -50,3 +50,7 @@ export const Centered = styled.div`
   background-color: transparent;
 
 `
+export const Div = styled.div`
+    height: 100%;
+    height: 100%;
+`

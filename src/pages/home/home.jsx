@@ -7,6 +7,7 @@ import { InputComponent} from "../../components/select/inputComponent"
 import { SelectComponent} from "../../components/select/selectComponent"
 import { ShoppingGuide } from "../../containers/shoppingGuide/shoppingGuide"
 import { Footer } from "../../containers/footer/footer"
+
 //css
 import { Container, Title, Containerfeatured,
          ContainerListOfEstate, ContainerSearched, ContainerButtons,
@@ -15,6 +16,7 @@ import { Container, Title, Containerfeatured,
 import logo from '../../assets/foto2.jpeg'
 import logo2 from '../../assets/foto17.jpg'
 import logo3 from '../../assets/foto19.jpg'
+import { MapComponent } from "../../components/MapComponent/map.component"
 const array = [
     {id: 1,price: 480000, time: '09 de septiembre 2022', address: 'CALLE OREJUELAS - N° 270', country: 'Colombia, Medellin,Miraflores',logo: logo, environments: 2, baths: 2, rooms: 4, meters: 1000},
     {id: 2,price: 580000, time: '07 de septiembre 2022', address: 'CALLE FANTASIA - N° 270',country: 'Bolivar, Cundinamarca,Miraflores', logo: logo2, environments: 2, baths: 1, rooms: 4, meters: 1000},
@@ -31,7 +33,12 @@ export const Home = () => {
     const [searched, setSearched] = useState(false)
     const [errorInput, setErrorIput] = useState({})
     const [visibleFilters, setVisibleFilters] = useState(false)
+    const [map, setMap] = useState(false)
     
+    const handleMap = event => {
+        setMap(current => !current)
+    }
+
     const handleSearch = (e) =>{
         const name = e.target.name
         const value = e.target.value.toUpperCase()
@@ -42,6 +49,7 @@ export const Home = () => {
         const separateCountry = item.country.split(",", 1)
         return {country: separateCountry[0].toUpperCase()}
     })
+
 
     return (
         <Container>
@@ -78,10 +86,14 @@ export const Home = () => {
                         <ContainerButton column={1} onClick={()=>setVisibleFilters(prevState=> !prevState)}>
                             <TextButton><Iconfilter/>Filtros</TextButton>
                         </ContainerButton>
-                        <ContainerButton column={2}>
-                            <TextButton><IconMap/>Mapa</TextButton>
+                        <ContainerButton  column={2}>
+                            <ContainerButton onClick={handleMap}>
+                            <TextButton ><IconMap/>Mapa</TextButton>
+                            </ContainerButton>
                         </ContainerButton>
+
                     </ContainerButtons>
+                    {map && <MapComponent />}
                     <ContainerFilters visible={visibleFilters}>
                         <SelectComponent placeholder="Ciudad" nameInput={"pais"}
                                 handleSearch={handleSearch}
