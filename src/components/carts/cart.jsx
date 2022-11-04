@@ -7,7 +7,7 @@ import { TfiRulerAlt2 } from "react-icons/tfi";
 import { MdOutlineSpaceDashboard, MdOutlineBathtub } from "react-icons/md";
 
 import { Link } from "react-router-dom";
-export const Cart = ({id,img, price, time, address, country, featured, baths, environments, rooms, meters}) => {
+export const Cart = ({id,img, price, time, address, country,city, featured, baths, environments, rooms, meters}) => {
 return (
     <Container visible={featured}>
         <Link to={`detail/${id}`} style={{width: '100%'}}>
@@ -29,7 +29,7 @@ return (
                 ) : (
                     <ContainerOne>
                         <ContainerTwo visible={true}>
-                        <Text2 disabledColor={true} Size={'7px'}>{country}</Text2>
+                        <Text2 disabledColor={true} Size={'7px'}>{country} / {city}</Text2>
                         </ContainerTwo>
                         <Contact>contactar</Contact>
                     </ContainerOne>

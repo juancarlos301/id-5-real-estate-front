@@ -1,7 +1,8 @@
 import { useRef, useState} from "react"
 import { Container, Img, Button, DivImg } from "./stylesCarrousel"
 import { Cart } from "../../components/carts/cart"
-export const Carrousel = ({data, detail = false}) => {
+import img from '../../assets/foto2.jpeg'
+export const Carrousel = ({data = [], detail = false}) => {
     
     const slideShow = useRef(null)
     const [selectedImage, setSelectedImage] = useState(0)
@@ -36,13 +37,13 @@ export const Carrousel = ({data, detail = false}) => {
                 :  data.map((element, index)=>(
                     <Cart key={index}
                         id={element.id}
-                        img={element.logo}
+                        img={img}
                         price={element.price}
-                        time={element.time}
+                        time={element.createdAt}
                         address={element.address}
                         country={element.country}
-                        baths={element.baths}
-                        environments={element.environments}
+                        baths={element.bathrooms}
+                        environments={element.rooms}
                         rooms={element.rooms}
                         meters={element.meters}
                         featured={true}/>

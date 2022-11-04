@@ -1,10 +1,11 @@
 import { TfiRulerAlt2, TfiRuler } from "react-icons/tfi";
-import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdOutlineSpaceDashboard, MdOutlineBathtub } from "react-icons/md";
 import { BsDoorOpen } from "react-icons/bs";
 import { RiWhatsappFill } from "react-icons/ri";
 import { Carrousel } from "../../containers/carrousel/carrousel";
 import image2 from '../../assets/foto17.jpg'
 import image3 from '../../assets/foto19.jpg'
+import image1 from '../../assets/foto2.jpeg'
 
 import {
   Container,
@@ -22,16 +23,19 @@ import {
 
 export const DetailCard = ({card}) =>{
   const {
-    logo,
     price,
     meters,
     address,
     country,
     rooms,
-    baths,
+    bathrooms,
+    city,
+    description,
+    state,
+    type
   } = card
 
-  const data = [logo,image2,image3]
+  const data = [image1,image2,image3]
   return (
       <Container>
         <Carrousel detail="true" data={data}/>
@@ -42,10 +46,10 @@ export const DetailCard = ({card}) =>{
               <RiWhatsappFill style={{fontSize: "16px"}} />
           </ContactText>
         </ContainerRow>
-        <OfferPrice>Casa | Alquilado</OfferPrice>
+        <OfferPrice>{type} | {state}</OfferPrice>
         <Adress title="true">{address}</Adress>
         <Adress>
-          {country}
+          {country} / {city}
         </Adress>
         <DescriptionContainer>
           <IconsTextContainer>
@@ -65,14 +69,12 @@ export const DetailCard = ({card}) =>{
             <IconsText>{rooms} dorm.</IconsText>
           </IconsTextContainer>
           <IconsTextContainer>
-            <MdOutlineSpaceDashboard />
-            <IconsText>{baths} baños.</IconsText>
+            <MdOutlineBathtub />
+            <IconsText>{bathrooms} baños.</IconsText>
           </IconsTextContainer>
         </DescriptionContainer>
         <Description>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni iusto
-          praesentium hic ullam amet quas ad quia iste, rerum et nemo mollitia.
-          Rerum, quis. Eos vel illo aut. Blanditiis, a!
+          {description}
         </Description>
         <ButtonBuy>Adquirir inmueble</ButtonBuy>
       </Container>

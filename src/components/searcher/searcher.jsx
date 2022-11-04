@@ -10,15 +10,15 @@ export const Searcher = ({handleSearch, setEstates, estates, valueInput, setSear
         }
         if(pais.length > 0) {
              newList = estates.filter((estate)=> {
-                const selectOnlyCountry = estate.country.split(",", 1)
-                return selectOnlyCountry[0].normalize("NFD").replace(/[\u0300-\u036f]/g, '').toUpperCase()
+                const selectOnlyCountry = estate.country
+                return selectOnlyCountry.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toUpperCase()
                 .includes(pais.normalize("NFD").replace(/[\u0300-\u036f]/g, ''))
         })
             setEstates(newList)
             setSearched(true)
         }
         if(baños){
-            newList = newList.filter((estate)=> estate.baths >= baños)
+            newList = newList.filter((estate)=> estate.bathrooms >= baños)
             setEstates(newList)
         }
         if(habitaciones){
@@ -45,7 +45,7 @@ export const Searcher = ({handleSearch, setEstates, estates, valueInput, setSear
     return (
         <Container>
             <BsSearch size={'15px'} style={{ margin: '0 12px', backgroundColor: '#fff'}}/>
-            <Input type="text" placeholder="En que ciudad deseas vivir"
+            <Input type="text" placeholder="En que país deseas vivir"
              name="pais" value={valueInput.pais} onChange={(e)=>handleSearch(e)}/>
             <SearchButton onClick={()=>searchData()}>Buscar</SearchButton>
         </Container>

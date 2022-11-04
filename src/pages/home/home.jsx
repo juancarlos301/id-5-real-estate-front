@@ -7,49 +7,45 @@ import { InputComponent} from "../../components/select/inputComponent"
 import { SelectComponent} from "../../components/select/selectComponent"
 import { ShoppingGuide } from "../../containers/shoppingGuide/shoppingGuide"
 import { Footer } from "../../containers/footer/footer"
+import { Promotion } from "../../components/promotion/Promotion"
 //css
 import { Container, Title, Containerfeatured,
          ContainerListOfEstate, ContainerSearched, ContainerButtons,
          ContainerButton, TextButton, Iconfilter, IconMap,
          ContainerFilters, ContainerSearcher } from "./stylesHome"
-import logo from '../../assets/foto2.jpeg'
-import logo2 from '../../assets/foto17.jpg'
-import logo3 from '../../assets/foto19.jpg'
-const array = [
-    {id: 1,price: 480000, time: '09 de septiembre 2022', address: 'CALLE OREJUELAS - N° 270', country: 'Colombia, Medellin,Miraflores',logo: logo, environments: 2, baths: 2, rooms: 4, meters: 1000},
-    {id: 2,price: 580000, time: '07 de septiembre 2022', address: 'CALLE FANTASIA - N° 270',country: 'Lima, Cundinamarca,Miraflores', logo: logo2, environments: 2, baths: 1, rooms: 4, meters: 1000},
-    {id: 3,price: 680000, time: '01 de septiembre 2022', address: 'CALLE CRUZ - N° 270',country: 'Argentina, Soopetran,Miraflores',logo: logo3, environments: 2, baths: 1, rooms: 5, meters: 2000},
-    {id: 4,price: 780000, time: '10 de septiembre 2022', address: 'CALLE ESTACIONARIA - N° 270',country: 'Lima, Lima,Miraflores', logo: logo, environments: 2, baths: 2, rooms: 3, meters: 3000},
-    {id: 5,price: 880000, time: '20 de septiembre 2022', address: 'CALLE ORIENTAL - N° 270',country: 'Perú, Belén,valle', logo: logo2, environments: 2, baths: 2, rooms: 2, meters: 4000},
-]
-
+import img from '../../assets/foto17.jpg'
 export const Home = () => {
-
-    const [data, setData] = useState([...array])
+    const [data, setData] = useState()
     const [estates, setEstates] = useState([])
     const [valueInput, setValueInput] = useState({pais: ''})
     const [searched, setSearched] = useState(false)
     const [errorInput, setErrorIput] = useState({})
     const [visibleFilters, setVisibleFilters] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [viweData, setViewData] = useState([])
+    const [countries, setCountries] = useState([])
     
-    /*useEffect(()=>{
-        fetch('http://localhost:3001/api/v1/properties')
-        .then(res=>setViewData(res))
-    },[])*/
-    console.log(viweData)
+    useEffect(()=>{
+        fetch("http://localhost:3001/api/v1/properties")
+        .then(res => res.json())
+        .then(data=>{
+            setData(data)
+            const getCountries = data.map((item) => {
+                return{country: item.country.toUpperCase()}
+            })
+            setCountries(getCountries)
+        })
+    }, [])
+    console.log(data)
     const handleSearch = (e) =>{
         const name = e.target.name
         const value = e.target.value.toUpperCase()
         setValueInput({...valueInput, [name]: value})
-    }
-    const countries = array.map((item) => {
+    }    
+    /*const countries = array.map((item) => {
         const separateCountry = item.country.split(",", 1)
         return {country: separateCountry[0].toUpperCase()}
-    })
+    })*/
 
-    
     return (
         <Container>
             <Navbar setSearched={setSearched} setValueInput={setValueInput} valueInput={valueInput}/>
@@ -75,12 +71,11 @@ export const Home = () => {
                     </ContainerButtons>
                         {!loading &&
                     <ContainerFilters visible={visibleFilters}>
-                        <SelectComponent placeholder="Ciudad" nameInput={"pais"}
+                        <SelectComponent placeholder="País" nameInput={"pais"}
                                 handleSearch={handleSearch}
                                 countries={countries}
                                 defaultValue={valueInput.pais}
                                 />
-                        
                         <InputComponent placeholder="Cantidad de ambientes" nameInput={"ambientes"}
                                 handleSearch={handleSearch}
                                 errorInput={errorInput}
@@ -119,11 +114,12 @@ export const Home = () => {
                         {estates.length > 0 ? (estates.map((element, index)=>(
                                 <Cart key={index}
                                      id={element.id}
-                                     img={element.logo}
+                                     img={img}
                                      price={element.price}
-                                     time={element.time}
+                                     time={element.createdAt}
                                      address={element.address}
                                      country={element.country}
+                                     city={element.city}
                                      featured={false}/>
                         ))) :
                                 (<div>not found</div>)
@@ -131,6 +127,7 @@ export const Home = () => {
                     </ContainerListOfEstate>
             </ContainerSearched>
             )}
+            {!searched && <Promotion/>}
             {!searched && <ShoppingGuide/>}
             <Footer/>
         </Container>

@@ -48,7 +48,8 @@ export const AlertZona = styled.div`
 `
 export const Contact = styled.p`
  grid-column-start: 2;
- width: 60px;
+ width: 80%;
+ text-align: center;
  font-size: 7px;
  line-height: 10px;
  color: rgba(0, 0, 0, 0.70);
