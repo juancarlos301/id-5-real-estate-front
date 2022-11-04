@@ -6,10 +6,10 @@ import { Container, Img , Centered, Logo, Bg, P, Button} from "./StylesPromotion
 
 export function Promotion() {
   return (
-<Container className="container">
+<Container>
   <Img src={image} alt="bg"/>
   <Bg></Bg>
-  <Centered className="centered">
+  <Centered>
     <Logo src={logo} alt="bonpland" />
     <P>!Los mejores precios y descuentos los encontas en Bonpland!</P>
     <Link to="/all-properties">

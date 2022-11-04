@@ -5,7 +5,6 @@ import { Detail } from './pages/detail/detail';
 import {GlobalStyle} from './stylesGlobal'
 function App() {
   return (
-    
     <BrowserRouter>
     <GlobalStyle/>
     <Routes>

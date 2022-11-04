@@ -14,6 +14,7 @@ import { Container, Title, Containerfeatured,
          ContainerButton, TextButton, Iconfilter, IconMap,
          ContainerFilters, ContainerSearcher } from "./stylesHome"
 import img from '../../assets/foto17.jpg'
+
 export const Home = () => {
     const [data, setData] = useState()
     const [estates, setEstates] = useState([])
@@ -36,6 +37,13 @@ export const Home = () => {
         })
     }, [])
     console.log(data)
+
+    const [map, setMap] = useState(false)
+    
+    const handleMap = event => {
+        setMap(current => !current)
+    }
+
     const handleSearch = (e) =>{
         const name = e.target.name
         const value = e.target.value.toUpperCase()
@@ -45,6 +53,7 @@ export const Home = () => {
         const separateCountry = item.country.split(",", 1)
         return {country: separateCountry[0].toUpperCase()}
     })*/
+
 
     return (
         <Container>
@@ -65,10 +74,14 @@ export const Home = () => {
                         <ContainerButton column={1} onClick={()=>setVisibleFilters(prevState=> !prevState)}>
                             <TextButton><Iconfilter/>Filtros</TextButton>
                         </ContainerButton>
-                        <ContainerButton column={2}>
-                            <TextButton><IconMap/>Mapa</TextButton>
+                        <ContainerButton  column={2}>
+                            <ContainerButton onClick={handleMap}>
+                            <TextButton ><IconMap/>Mapa</TextButton>
+                            </ContainerButton>
                         </ContainerButton>
+
                     </ContainerButtons>
+                    {map && <MapComponent />}
                         {!loading &&
                     <ContainerFilters visible={visibleFilters}>
                         <SelectComponent placeholder="País" nameInput={"pais"}
