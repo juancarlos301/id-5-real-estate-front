@@ -8,15 +8,15 @@ import { SelectComponent} from "../../components/select/selectComponent"
 import { ShoppingGuide } from "../../containers/shoppingGuide/shoppingGuide"
 import { Footer } from "../../containers/footer/footer"
 import { Promotion } from "../../components/promotion/Promotion"
+import { MapComponent } from "../../components/MapComponent/map.component"
 //css
 import { Container, Title, Containerfeatured,
          ContainerListOfEstate, ContainerSearched, ContainerButtons,
          ContainerButton, TextButton, Iconfilter, IconMap,
          ContainerFilters, ContainerSearcher } from "./stylesHome"
-import img from '../../assets/foto17.jpg'
 
 export const Home = () => {
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
     const [estates, setEstates] = useState([])
     const [valueInput, setValueInput] = useState({pais: ''})
     const [searched, setSearched] = useState(false)
@@ -24,49 +24,51 @@ export const Home = () => {
     const [visibleFilters, setVisibleFilters] = useState(false)
     const [loading, setLoading] = useState(false)
     const [countries, setCountries] = useState([])
-    
+    const [map, setMap] = useState(false)
+    const [defaultCountry, setDefaultCountry] = useState({})
+
     useEffect(()=>{
         fetch("http://localhost:3001/api/v1/properties")
         .then(res => res.json())
         .then(data=>{
             setData(data)
-            const getCountries = data.map((item) => {
-                return{country: item.country.toUpperCase()}
-            })
-            setCountries(getCountries)
         })
     }, [])
-    console.log(data)
 
-    const [map, setMap] = useState(false)
-    
-    const handleMap = event => {
-        setMap(current => !current)
+    useEffect(()=>{
+        fetch("http://localhost:3001/api/v1/countries")
+        .then(res => res.json())
+        .then(data=>{
+            setCountries(data)
+        })
+    }, [])
+
+    const viewDefaultValue = () => {
+        const result = countries.find((item)=>item.country.normalize("NFD").replace(/[\u0300-\u036f]/g, '').toUpperCase().includes(valueInput.pais.normalize("NFD").replace(/[\u0300-\u036f]/g, '')))
+        setDefaultCountry(result)
     }
 
     const handleSearch = (e) =>{
         const name = e.target.name
         const value = e.target.value.toUpperCase()
         setValueInput({...valueInput, [name]: value})
-    }    
-    /*const countries = array.map((item) => {
-        const separateCountry = item.country.split(",", 1)
-        return {country: separateCountry[0].toUpperCase()}
-    })*/
-
-
+    }
+    const featuredProperties = data?.slice(0,5)
     return (
         <Container>
             <Navbar setSearched={setSearched} setValueInput={setValueInput} valueInput={valueInput}/>
             <ContainerSearcher marginBot={searched}>
                 <Title aling={'center'}>Encuentra el hogar de tus sueños</Title>
                 <Searcher handleSearch={handleSearch} setEstates={setEstates}
-                            estates={data} valueInput={valueInput} setSearched={setSearched} setLoading={setLoading}/>
+                            estates={data} valueInput={valueInput} setSearched={setSearched}
+                            setLoading={setLoading} viewDefaultValue={viewDefaultValue}
+                            setMap={setMap}searched
+                            />
             </ContainerSearcher>
             {!searched ? (
                 <Containerfeatured>
                     <Title alingLeft>Inmuebles destacados</Title>
-                    <Carrousel data={data}/>
+                    <Carrousel data={featuredProperties}/>
             </Containerfeatured>
             ): (
                 <ContainerSearched>
@@ -75,19 +77,20 @@ export const Home = () => {
                             <TextButton><Iconfilter/>Filtros</TextButton>
                         </ContainerButton>
                         <ContainerButton  column={2}>
-                            <ContainerButton onClick={handleMap}>
+                            <ContainerButton onClick={()=>setMap(current => !current)}>
                             <TextButton ><IconMap/>Mapa</TextButton>
                             </ContainerButton>
                         </ContainerButton>
-
                     </ContainerButtons>
-                    {map && <MapComponent />}
+                    {map && <MapComponent defaultCountry={defaultCountry} 
+                    />}
                         {!loading &&
                     <ContainerFilters visible={visibleFilters}>
                         <SelectComponent placeholder="País" nameInput={"pais"}
                                 handleSearch={handleSearch}
                                 countries={countries}
-                                defaultValue={valueInput.pais}
+                                defaultValue={defaultCountry}
+                                setDefaultCountry={setDefaultCountry}
                                 />
                         <InputComponent placeholder="Cantidad de ambientes" nameInput={"ambientes"}
                                 handleSearch={handleSearch}
@@ -127,7 +130,7 @@ export const Home = () => {
                         {estates.length > 0 ? (estates.map((element, index)=>(
                                 <Cart key={index}
                                      id={element.id}
-                                     img={img}
+                                     img={element.urlImage}
                                      price={element.price}
                                      time={element.createdAt}
                                      address={element.address}

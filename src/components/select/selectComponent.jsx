@@ -6,16 +6,11 @@ export const SelectComponent = ({handleSearch, placeholder,
     const verifyInputs = (e) => {
         handleSearch(e)
     }
-    const viewDefaultValue = () => {
-        const result = countries.find((item)=>item.country.normalize("NFD").replace(/[\u0300-\u036f]/g, '').includes(defaultValue.normalize("NFD").replace(/[\u0300-\u036f]/g, '')))
-        return result?.country
-    }
-
     return(
         <Container>
             <Title>{placeholder}</Title>
                 <div>
-                    <Select name={nameInput} defaultValue={viewDefaultValue()}
+                    <Select name={nameInput} defaultValue={defaultValue.country}
                      onChange={(e)=>verifyInputs(e)}
                      >
                          {countries.map((item,index)=>(

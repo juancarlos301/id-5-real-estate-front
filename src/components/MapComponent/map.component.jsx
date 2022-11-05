@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
-import { useState } from "react";
 import Leaflet from "leaflet"
 import "leaflet/dist/leaflet.css"
 import "leaflet-control-geocoder";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet"
+import { MapContainer, TileLayer } from "react-leaflet"
 import markerIcon from "leaflet/dist/images/marker-icon.png"
 import markerShadow from "leaflet/dist/images/marker-shadow.png"
 import markerRetina from "leaflet/dist/images/marker-icon-2x.png"
@@ -14,11 +13,10 @@ Leaflet.Icon.Default.mergeOptions({
     shadowUrl: markerShadow
 });
 
+export const MapComponent = ({defaultCountry}) => {
 
-
-export const MapComponent = () => { 
     const mapRef = useRef();
-    const zoom = 4;
+    const zoom = 5;
     const containerStyle = {
         width: "400px",
         height: "300px",
@@ -26,9 +24,10 @@ export const MapComponent = () => {
         margin: '2rem 0 0 0',
     }
     const center = {
-        lat: -38.416097, 
-        lng: -63.616672
+        lat: defaultCountry.latitud, 
+        lng: defaultCountry.longitud
     }
+
     return (
         <MapContainer
             style={containerStyle}

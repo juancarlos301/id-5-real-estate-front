@@ -3,9 +3,6 @@ import { MdOutlineSpaceDashboard, MdOutlineBathtub } from "react-icons/md";
 import { BsDoorOpen } from "react-icons/bs";
 import { RiWhatsappFill } from "react-icons/ri";
 import { Carrousel } from "../../containers/carrousel/carrousel";
-import image2 from '../../assets/foto17.jpg'
-import image3 from '../../assets/foto19.jpg'
-import image1 from '../../assets/foto2.jpeg'
 
 import {
   Container,
@@ -22,6 +19,7 @@ import {
 } from "./StylesDetailCard";
 
 export const DetailCard = ({card}) =>{
+
   const {
     price,
     meters,
@@ -32,13 +30,13 @@ export const DetailCard = ({card}) =>{
     city,
     description,
     state,
-    type
+    type,
+    urlImage
   } = card
 
-  const data = [image1,image2,image3]
   return (
       <Container>
-        <Carrousel detail="true" data={data}/>
+        <Carrousel detail="true" data={urlImage}/>
         <ContainerRow>
           <BoldPrice>{`USD ${price}`} </BoldPrice>
           <ContactText>

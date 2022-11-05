@@ -1,13 +1,14 @@
 import { useRef, useState} from "react"
 import { Container, Img, Button, DivImg } from "./stylesCarrousel"
 import { Cart } from "../../components/carts/cart"
-import img from '../../assets/foto2.jpeg'
 export const Carrousel = ({data = [], detail = false}) => {
     
     const slideShow = useRef(null)
     const [selectedImage, setSelectedImage] = useState(0)
 
     const amountImages = data.length
+
+  const BASE_URL = 'https://drive.google.com/uc?id='
 
     const nextImage = () => {
         const select = selectedImage === amountImages - 1 ? 0 : selectedImage + 1
@@ -26,18 +27,18 @@ export const Carrousel = ({data = [], detail = false}) => {
             {detail && amountImages > 1 && (
                 <Button onClick={()=>afterImage()}>{"<"}</Button>
             )}
-            {detail ? data.map((item, index)=>{
+            {amountImages > 1 && detail ? data.map((item, index)=>{
                 return<DivImg key={index}
                                 divActive={index === selectedImage ?  'active': 'inactive'}> 
                     {selectedImage === index &&   
-                        <Img src={item} alt="inmobiliaria3" />
+                        <Img src={BASE_URL + item} alt="inmobiliaria" />
                     }
                     </DivImg>
             })
                 :  data.map((element, index)=>(
                     <Cart key={index}
                         id={element.id}
-                        img={img}
+                        img={element.urlImage}
                         price={element.price}
                         time={element.createdAt}
                         address={element.address}

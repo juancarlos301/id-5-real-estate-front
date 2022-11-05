@@ -49,6 +49,7 @@ export const ContainerButtons = styled.div`
  grid-template-columns: 2;
  gap: 0 15px;
  padding: 0 10px;
+ height: 30px;
 `
 export const ContainerButton = styled.div`
  width: 100%;
@@ -56,7 +57,7 @@ export const ContainerButton = styled.div`
  display: flex;
  justify-content: center;
  align-items: center;
- padding: 8px 0;
+ padding: 0;
  background-color: #d7d7d7d1;
  border-radius: 6px;
  cursor: pointer;

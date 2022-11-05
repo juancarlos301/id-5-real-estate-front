@@ -7,11 +7,14 @@ import { TfiRulerAlt2 } from "react-icons/tfi";
 import { MdOutlineSpaceDashboard, MdOutlineBathtub } from "react-icons/md";
 
 import { Link } from "react-router-dom";
-export const Cart = ({id,img, price, time, address, country,city, featured, baths, environments, rooms, meters}) => {
+export const Cart = ({id,img, price, time, address,
+     country,city, featured, baths, environments, rooms, meters}) => {
+
+        const BASE_URL = 'https://drive.google.com/uc?id='
 return (
     <Container visible={featured}>
         <Link to={`detail/${id}`} style={{width: '100%'}}>
-        <Img src={img} alt=""visible={featured}/>
+        <Img src={BASE_URL + img[0]} alt=""visible={featured}/>
         </Link>
         <ContainerData visible={featured}>
             <ContainerOne>

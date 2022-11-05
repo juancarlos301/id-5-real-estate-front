@@ -1,6 +1,9 @@
 import { Container, SearchButton, Input } from "./stylesSearcher"
 import {BsSearch} from 'react-icons/bs'
-export const Searcher = ({handleSearch, setEstates, estates, valueInput, setSearched, setLoading}) => {
+export const Searcher = ({handleSearch,
+    setEstates, estates, valueInput,
+    setSearched, setLoading,
+     viewDefaultValue, setMap}) => {
     const searchData = () => {
         setLoading(true)
         const {pais, baños, habitaciones, precio, min, max} = valueInput
@@ -37,8 +40,10 @@ export const Searcher = ({handleSearch, setEstates, estates, valueInput, setSear
             newList = newList.filter((estate)=> estate.meters <= max)
             setEstates(newList)
         }
+        setMap(false)
+        viewDefaultValue()
+        
         setTimeout(()=>{
-
             setLoading(false)
         }, [1000])
     }
